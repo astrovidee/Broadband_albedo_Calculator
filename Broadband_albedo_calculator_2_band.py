@@ -8,6 +8,7 @@ Note: any spectrum file can be used along with any
 reflectance spectrum provided the minGrid and maxGrid parameters are changed to reflect the appropriate units. 
 Units are not important (as long as the wavelength units are the same for each file) for the 
 final albedo calculations since it is normalized by both the wavelength and the stellar spectrum.
+This two-band calculator can be used for EBMs or ExoCAM.
 Required Inputs:
     stellarfile = file containing two columns:
                          1 - wavelength, microns
