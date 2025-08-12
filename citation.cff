@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Broadband Albedo Calculator"
+authors:
+  - family-names: "Venkatesan"
+    given-names: "Vidya"
+    affiliation: "University of California, Irvine"
+version: "1.0.0"
+doi: 10.5281/zenodo.16813647
+date-released: 2025-08-12
+url: "https://github.com/astrovidee/Broadband_albedo_calculator"
