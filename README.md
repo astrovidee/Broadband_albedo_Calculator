@@ -8,5 +8,5 @@ If using this code, please cite [Venkatesan et al., 2025](https://your.paper.lin
 
 ---
 
-You can view the complete documentation [here](https://astrovidee.github.io/Broadband_albedo_Calculator/). [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16813585.svg)](https://doi.org/10.5281/zenodo.16813585)
+You can view the complete documentation [here](https://astrovidee.github.io/Broadband_albedo_Calculator/). The zenodo DOI for this repository can be found here [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16813647.svg)](https://doi.org/10.5281/zenodo.16813647)
 
