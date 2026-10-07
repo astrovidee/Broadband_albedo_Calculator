@@ -19,7 +19,7 @@ Python 3 with NumPy, SciPy and Matplotlib.
 ```bash
 git clone https://github.com/astrovidee/Broadband_albedo_Calculator.git
 cd Broadband_albedo_Calculator
-pip install -r requirements.txt
+
 ```
 
 ## Usage
