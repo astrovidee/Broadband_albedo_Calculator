@@ -5,7 +5,7 @@ authors:
   - family-names: "Venkatesan"
     given-names: "Vidya"
     affiliation: "University of California, Irvine"
-version: "1.0.0"
-doi: 10.5281/zenodo.16813647
-date-released: 2025-08-12
-url: "https://github.com/astrovidee/Broadband_albedo_calculator"
+version: "2.0.0"
+doi: 10.5281/zenodo.16813646
+date-released: 2026-10-08
+url: "https://github.com/astrovidee/Broadband_albedo_Calculator"
