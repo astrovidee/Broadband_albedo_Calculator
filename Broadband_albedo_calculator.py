@@ -1,14 +1,16 @@
 """
 Broadband albedo for several stars and surfaces, in two bands and in six bands.
 
-Based on Broadband_albedo_calculator_2_band.py and
-broadband_albedo_calculator_6_band.py (Vidya Venkatesan), which are python
-versions of ice_gcm.pro. The albedo calculation is the same; this script runs
-it for every star/surface pair, prints the band albedos and saves figures:
+Author: Vidya Venkatesan (vidyav1@uci.edu)
+
+A python version of ice_gcm.pro. It combines the earlier two-band and six-band
+calculators: the albedo calculation is the same, and this script runs it for
+every star/surface pair, prints the band albedos and saves figures:
   two_band_albedo.png  stellar spectra in wavelength bins above the surface
                        reflectance and its two-band albedo for each star
   six_band_albedo.png  the same for the six bands
-  weighted_albedo.png  the flux-weighted interpolated albedo for each pair
+  weighted_albedo.png  only with --weighted: four panels with the flux-weighted
+                       interpolated albedo for each pair
 
 For each pair the script
   1. finds the overlapping wavelength range of the two files,
@@ -20,14 +22,15 @@ The two bands are split at 0.7 microns and cover the whole overlapping range.
 The six bands are the surface-albedo bands of ROCKE-3D, VIS and NIR1 to NIR5,
 from 0.3 to 4.0 microns. A six-band value that the files only
 partly cover is marked with *, and one they do not cover at all is given as
-n/a (the original six-band script prints 0 there).
+n/a.
 
 Usage:
-    python plot_weighted_albedo.py                 (two bands and six bands)
-    python plot_weighted_albedo.py --bands 2       (two bands only)
-    python plot_weighted_albedo.py --bands 6       (six bands only)
-    python plot_weighted_albedo.py --data-dir /path/to/spectra
-    python plot_weighted_albedo.py --no-show       (save the figures, open no window)
+    python Broadband_albedo_calculator.py                 (two bands and six bands)
+    python Broadband_albedo_calculator.py --bands 2       (two bands only)
+    python Broadband_albedo_calculator.py --bands 6       (six bands only)
+    python Broadband_albedo_calculator.py --weighted      (also make weighted_albedo.png)
+    python Broadband_albedo_calculator.py --data-dir /path/to/spectra
+    python Broadband_albedo_calculator.py --no-show       (save the figures, open no window)
 
 Inputs (two columns each, extra columns and header lines are ignored):
     stellar file = wavelength, flux (any units, the flux is normalized)
@@ -55,6 +58,7 @@ STARS = [
     ("hd128167_scaled.txt", "F2V HD128167",       None, "#2f9fd0", "-"),
     ("sun_scaled.txt",      "G2V Sun",            None, "#dba400", "-"),
     ("hd22049_scaled.txt",  "K2V HD22049",        None, "#e8601c", "-"),
+    ("adleo_scaled.txt",    "M3V AD Leonis",      None, "#b0123f", "-"),
 ]
 
 SURFACES = [
@@ -79,7 +83,7 @@ SNORM = 1360       # W m^-2, total flux each stellar spectrum is scaled to
 X_RANGE = (0.2, 5.0)    # microns, wavelength range of the figure (log axis)
 BINS_PER_DECADE = 20    # wavelength bins the stellar spectra are averaged into
 
-# Weighted-albedo figure
+# Weighted-albedo figure (only made with --weighted)
 X_MAX = None       # microns, right edge of the surface and weighted panels
                    # (None = full overlap range)
 STAR_X_MAX = 5.0   # microns, right edge of the stellar spectra panel
@@ -520,6 +524,8 @@ def main():
                         help="file for the two-band figure (default: two_band_albedo.png)")
     parser.add_argument("--out-six", default="six_band_albedo.png",
                         help="file for the six-band figure (default: six_band_albedo.png)")
+    parser.add_argument("--weighted", action="store_true",
+                        help="also make the four-panel weighted-albedo figure")
     parser.add_argument("--out-weighted", default="weighted_albedo.png",
                         help="file for the weighted-albedo figure (default: weighted_albedo.png)")
     parser.add_argument("--no-show", action="store_true",
@@ -554,7 +560,8 @@ def main():
 
     figures = [(band_figure(stars, surfaces, results, key), {"2": args.out, "6": args.out_six}[key])
                for key in keys]
-    figures.append((weighted_figure(stars, surfaces, results), args.out_weighted))
+    if args.weighted:
+        figures.append((weighted_figure(stars, surfaces, results), args.out_weighted))
     for fig, name in figures:
         out = Path(name)
         fig.savefig(out, dpi=200)

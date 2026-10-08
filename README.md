@@ -91,6 +91,7 @@ See the paper for the original source of each spectrum.
 | `hd128167_scaled.txt` | Stellar spectrum, F2V star HD 128167 |
 | `sun_scaled.txt` | Stellar spectrum, G2V star (the Sun) |
 | `hd22049_scaled.txt` | Stellar spectrum, K2V star HD 22049 |
+| `adleo_scaled.txt` | Stellar spectrum, M3V star AD Leonis |
 | `snow_bluemarine_50_50.txt` | Surface reflectance, 50% snow and 50% blue marine ice |
 | `CO2_i200.txt` | Surface reflectance, CO2 ice with 200 µm grains |
 
